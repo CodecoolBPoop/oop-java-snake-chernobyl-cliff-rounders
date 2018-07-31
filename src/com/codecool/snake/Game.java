@@ -7,11 +7,16 @@ import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 
 public class Game extends Pane {
 
     public Game() {
+        init();
+    }
+
+    private void init() {
         new SnakeHead(this, 500, 500);
 
         new SimpleEnemy(this);
@@ -52,4 +57,21 @@ public class Game extends Pane {
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
     }
+
+    public void restart() {
+
+        Globals.gameObjects.removeAll(Globals.newGameObjects);
+        Globals.newGameObjects.clear();
+        Globals.gameObjects.removeAll(Globals.oldGameObjects);
+        Globals.oldGameObjects.clear();
+        Globals.gameObjects.clear();
+        GameOver.highScore =0;
+
+        getChildren().clear();
+        init();
+        start();
+
+    }
+
+
 }

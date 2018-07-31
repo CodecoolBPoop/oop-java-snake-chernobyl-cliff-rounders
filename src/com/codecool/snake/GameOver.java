@@ -13,9 +13,8 @@ public class GameOver {
 
     public static int highScore ;
 
-    public static void gameOver() {
+    public void gameOver(Game game) {
 
-        Game game = new Game();
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -27,6 +26,7 @@ public class GameOver {
         buttonClose.setOnAction(__ ->
         {
             window.close();
+            game.restart();
         });
 
         Label label = new Label();
