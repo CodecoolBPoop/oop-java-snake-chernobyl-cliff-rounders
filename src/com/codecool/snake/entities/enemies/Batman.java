@@ -21,11 +21,12 @@ public class Batman extends GameEntity implements Animatable, Interactable {
 
         setImage(Globals.batmanEnemy);
         pane.getChildren().add(this);
-        int speed = 1;
+        double speed = 0.5d;
         Random rnd = new Random();
+
+        // Starting position
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
@@ -36,8 +37,15 @@ public class Batman extends GameEntity implements Animatable, Interactable {
         if (isOutOfBounds()) {
             destroy();
         }
+        double speed = 0.5d;
+        double direction = getRotate();
+        System.out.println(direction);
+        setRotate(direction + 1.0d);
+        heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+
+
     }
 
     @Override

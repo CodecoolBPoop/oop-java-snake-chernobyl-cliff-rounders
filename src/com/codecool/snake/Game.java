@@ -20,6 +20,8 @@ public class Game extends Pane {
         new Batman(this);
         new Batman(this);
         new Batman(this);
+        new Batman(this);
+
 
         new SimplePowerup(this);
         new SimplePowerup(this);
