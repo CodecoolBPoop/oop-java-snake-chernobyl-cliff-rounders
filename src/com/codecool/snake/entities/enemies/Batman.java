@@ -34,13 +34,14 @@ public class Batman extends GameEntity implements Animatable, Interactable {
 
     @Override
     public void step() {
-        if (isOutOfBounds()) {
+        double oneCircle = 360;
+        double maxTurnOfCircles = 5 * oneCircle;
+        if (isOutOfBounds() || this.getRotate() > maxTurnOfCircles) {
             destroy();
         }
-        double speed = 0.5d;
+        double speed = 1d;
         double direction = getRotate();
-        System.out.println(direction);
-        setRotate(direction + 1.0d);
+        setRotate(direction + 1.5d);
         heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
