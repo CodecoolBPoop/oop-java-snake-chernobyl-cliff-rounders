@@ -23,7 +23,7 @@ public class GameOver {
 
         Button buttonClose = new Button("Close");
         buttonClose.setPrefSize(100,20);
-        buttonClose.setOnAction(__ ->
+        buttonClose.setOnAction(event ->
         {
             window.close();
             game.restart();
