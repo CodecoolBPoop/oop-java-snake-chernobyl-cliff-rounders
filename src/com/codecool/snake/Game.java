@@ -8,6 +8,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
+
 public class Game extends Pane {
 
     public Game() {
