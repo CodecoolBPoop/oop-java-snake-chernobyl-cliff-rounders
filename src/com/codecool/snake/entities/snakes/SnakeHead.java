@@ -14,6 +14,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
+    private static double snakeHeadPosition;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -27,13 +28,20 @@ public class SnakeHead extends GameEntity implements Animatable {
         addPart(4);
     }
 
+    public static double getSnakeHeadPosition() {
+        return snakeHeadPosition;
+    }
+
     public void step() {
         double dir = getRotate();
         if (Globals.leftKeyDown) {
             dir = dir - turnRate;
+            this.snakeHeadPosition = getRotate();
+
         }
         if (Globals.rightKeyDown) {
             dir = dir + turnRate;
+            this.snakeHeadPosition = getRotate();
         }
         // set rotation and position
         setRotate(dir);
@@ -41,7 +49,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
-        // check if collided with an enemy or a powerup
+        // check if collided with an enemy or a power up
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
                 if (entity instanceof Interactable) {
