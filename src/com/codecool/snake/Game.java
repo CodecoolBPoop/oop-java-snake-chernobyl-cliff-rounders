@@ -7,6 +7,7 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.DifferentPowerup1;
 import com.codecool.snake.entities.powerups.DifferentPowerup2;
 import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.snakes.LaserShooter;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import jdk.nashorn.internal.objects.Global;
 
 
 public class Game extends Pane {
@@ -55,7 +57,11 @@ public class Game extends Pane {
         new DifferentPowerup2(this);
         new DifferentPowerup2(this);
         new DifferentPowerup2(this);
+
+        new LaserShooter(this);
+
     }
+
 
     public void start() {
         Scene scene = getScene();
@@ -71,6 +77,7 @@ public class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.leftKeyDown  = false; break;
                 case RIGHT: Globals.rightKeyDown  = false; break;
+                case SHIFT: Globals.shiftKeyDown = false; break;
             }
         });
         Globals.gameLoop = new GameLoop();
@@ -88,7 +95,7 @@ public class Game extends Pane {
         SnakeHead.setSpeed(2);
         Globals.leftKeyDown= false;
         Globals.rightKeyDown= false;
-
+        Globals.shiftKeyDown = false;
 
         getChildren().clear();
         init();
@@ -119,6 +126,7 @@ public class Game extends Pane {
         vbox.getChildren().addAll(label,restartb);
         return vbox;
     }
+
 
 
 }
