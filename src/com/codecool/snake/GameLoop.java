@@ -2,7 +2,9 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.animation.AnimationTimer;
+import javafx.scene.control.Label;
 
 public class GameLoop extends AnimationTimer {
 
@@ -20,5 +22,7 @@ public class GameLoop extends AnimationTimer {
 
         Globals.gameObjects.removeAll(Globals.oldGameObjects);
         Globals.oldGameObjects.clear();
+        Game.label.setText(SnakeHead.getHealth());
+
     }
 }
