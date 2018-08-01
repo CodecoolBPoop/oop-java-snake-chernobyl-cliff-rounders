@@ -1,5 +1,8 @@
 package com.codecool.snake;
 
+
+import com.codecool.snake.entities.enemies.Batman;
+import com.codecool.snake.entities.enemies.Follower;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.DifferentPowerup1;
 import com.codecool.snake.entities.powerups.DifferentPowerup2;
@@ -14,19 +17,29 @@ import javafx.scene.layout.VBox;
 public class Game extends Pane {
 
     public Game() {
+  
         init();
     }
 
     private void init() {
-
+        Globals.snakeHeadObj = new SnakeHead(this, 500, 500);
         this.getChildren().add(this.addVBox());
 
         new SnakeHead(this, 500, 500);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new Batman(this);
+        new Batman(this);
+        new Batman(this);
+        new Batman(this);
+        new Follower(this);
+        new Follower(this);
+        new Follower(this);
+        new Follower(this);
 
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
 
         new SimplePowerup(this);
         new SimplePowerup(this);
