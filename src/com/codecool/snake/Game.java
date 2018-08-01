@@ -10,8 +10,10 @@ import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 
 public class Game extends Pane {
@@ -98,6 +100,12 @@ public class Game extends Pane {
         vbox.setLayoutX(10);
         vbox.setLayoutY(20);
 
+        Stage healthBar = new Stage();
+        healthBar.setTitle("Healthbar");
+
+        Label label = new Label();
+        label.setText(Integer.toString(SnakeHead.health));
+
         Button restartb = new Button("Restart");
         restartb.setPrefSize(100,20);
         restartb.setOnAction(event->
@@ -105,7 +113,9 @@ public class Game extends Pane {
             Globals.gameLoop.stop();
             restart();
         });
-        vbox.getChildren().addAll(restartb);
+
+
+        vbox.getChildren().addAll(label,restartb);
         return vbox;
     }
 
