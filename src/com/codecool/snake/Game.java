@@ -17,7 +17,6 @@ import javafx.scene.layout.VBox;
 public class Game extends Pane {
 
     public Game() {
-
         init();
     }
 
@@ -109,5 +108,11 @@ public class Game extends Pane {
         return vbox;
     }
 
+    public static void addSimpleEnemy(Pane pane) {
+        new SimpleEnemy(pane);
+    }
 
+    public static void addBatman(Pane pane) {
+        new Batman(pane);
+    }
 }
