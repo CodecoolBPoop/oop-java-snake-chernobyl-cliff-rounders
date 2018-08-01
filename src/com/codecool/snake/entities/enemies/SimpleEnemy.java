@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.enemies;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -16,9 +17,11 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     private Point2D heading;
     private static final int damage = 10;
+    public Pane myGame;
 
     public SimpleEnemy(Pane pane) {
         super(pane);
+        myGame = pane;
 
         setImage(Globals.simpleEnemy);
         pane.getChildren().add(this);
@@ -36,6 +39,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public void step() {
         if (isOutOfBounds()) {
             destroy();
+            Game.addSimpleEnemy(myGame);
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
