@@ -83,6 +83,8 @@ public class Game extends Pane {
         Globals.gameObjects.clear();
         GameOver.highScore =0;
         SnakeHead.setSpeed(2);
+        Globals.leftKeyDown= false;
+        Globals.rightKeyDown= false;
 
 
         getChildren().clear();
