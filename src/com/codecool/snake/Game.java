@@ -13,10 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 
 public class Game extends Pane {
+
+    static Label label = new Label();
 
     public Game() {
 
@@ -100,11 +101,7 @@ public class Game extends Pane {
         vbox.setLayoutX(10);
         vbox.setLayoutY(20);
 
-        Stage healthBar = new Stage();
-        healthBar.setTitle("Healthbar");
-
-        Label label = new Label();
-        label.setText(Integer.toString(SnakeHead.health));
+        label.setText(SnakeHead.getHealth());
 
         Button restartb = new Button("Restart");
         restartb.setPrefSize(100,20);
@@ -114,10 +111,9 @@ public class Game extends Pane {
             restart();
         });
 
-
         vbox.getChildren().addAll(label,restartb);
         return vbox;
     }
 
-
 }
+

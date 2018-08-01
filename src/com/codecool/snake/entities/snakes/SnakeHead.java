@@ -10,6 +10,7 @@ import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
+
 public class SnakeHead extends GameEntity implements Animatable {
 
     private static float speed = 2;
@@ -78,11 +79,17 @@ public class SnakeHead extends GameEntity implements Animatable {
             GameOver.highScore+=numParts;
     }
 
+
     public void changeHealth(int diff) {
         health += diff;
     }
 
     public static void setSpeed(float speed) {
         SnakeHead.speed = speed;
+    }
+
+    public static String getHealth() {
+        return Integer.toString(health);
+
     }
 }
