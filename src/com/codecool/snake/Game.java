@@ -40,6 +40,7 @@ public class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.leftKeyDown  = true; break;
                 case RIGHT: Globals.rightKeyDown  = true; break;
+                case SHIFT: Globals.shiftKeyDown = true; break;
             }
         });
 
