@@ -1,5 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
+import com.codecool.snake.GameOver;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -10,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
-    private static final float speed = 2;
+    private static float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
@@ -64,6 +66,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
+            new GameOver().gameOver((Game) this.pane);
         }
     }
 
@@ -72,9 +75,14 @@ public class SnakeHead extends GameEntity implements Animatable {
             SnakeBody newPart = new SnakeBody(pane, tail);
             tail = newPart;
         }
+            GameOver.highScore+=numParts;
     }
 
     public void changeHealth(int diff) {
         health += diff;
+    }
+
+    public void setSpeed(float speed) {
+        SnakeHead.speed = speed;
     }
 }

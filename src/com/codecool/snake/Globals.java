@@ -20,6 +20,8 @@ public class Globals {
     public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image batmanEnemy = new Image("batman.png");
     public static Image angryEmoji = new Image("angry_emoji.png");
+    public static Image eyes = new Image("eyes.png");
+    public static Image mastercard = new Image ("mastercard.png");
     //.. put here the other images you want to use
 
     public static boolean leftKeyDown;
