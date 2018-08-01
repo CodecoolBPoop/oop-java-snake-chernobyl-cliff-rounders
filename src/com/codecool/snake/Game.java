@@ -6,12 +6,21 @@ import com.codecool.snake.entities.powerups.DifferentPowerup2;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 
 public class Game extends Pane {
 
     public Game() {
+        init();
+    }
+
+    private void init() {
+
+        this.getChildren().add(this.addVBox());
+
         new SnakeHead(this, 500, 500);
 
         new SimpleEnemy(this);
@@ -52,4 +61,37 @@ public class Game extends Pane {
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
     }
+
+    public void restart() {
+
+        Globals.gameObjects.removeAll(Globals.newGameObjects);
+        Globals.newGameObjects.clear();
+        Globals.gameObjects.removeAll(Globals.oldGameObjects);
+        Globals.oldGameObjects.clear();
+        Globals.gameObjects.clear();
+        GameOver.highScore =0;
+
+        getChildren().clear();
+        init();
+        start();
+
+    }
+
+    public VBox addVBox() {
+        VBox vbox = new VBox();
+        vbox.setLayoutX(10);
+        vbox.setLayoutY(20);
+
+        Button restartb = new Button("Restart");
+        restartb.setPrefSize(100,20);
+        restartb.setOnAction(event->
+        {
+            Globals.gameLoop.stop();
+            restart();
+        });
+        vbox.getChildren().addAll(restartb);
+        return vbox;
+    }
+
+
 }
