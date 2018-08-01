@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.GameOver;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
@@ -14,7 +15,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
-    private int health;
+    private static double snakeHeadPosition;
+    public static int health;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -28,13 +30,20 @@ public class SnakeHead extends GameEntity implements Animatable {
         addPart(4);
     }
 
+    public static double getSnakeHeadPosition() {
+        return snakeHeadPosition;
+    }
+
     public void step() {
         double dir = getRotate();
         if (Globals.leftKeyDown) {
             dir = dir - turnRate;
+            this.snakeHeadPosition = getRotate();
+
         }
         if (Globals.rightKeyDown) {
             dir = dir + turnRate;
+            this.snakeHeadPosition = getRotate();
         }
         // set rotation and position
         setRotate(dir);
@@ -42,7 +51,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
-        // check if collided with an enemy or a powerup
+        // check if collided with an enemy or a power up
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
                 if (entity instanceof Interactable) {
@@ -57,7 +66,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
-            GameOver.gameOver();
+            new GameOver().gameOver((Game) this.pane);
         }
     }
 
@@ -73,7 +82,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         health += diff;
     }
 
-    public void setSpeed(float speed) {
+    public static void setSpeed(float speed) {
         SnakeHead.speed = speed;
     }
 }
