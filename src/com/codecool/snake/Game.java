@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 public class Game extends Pane {
 
     public Game() {
-  
+
         init();
     }
 
@@ -25,7 +25,6 @@ public class Game extends Pane {
         Globals.snakeHeadObj = new SnakeHead(this, 500, 500);
         this.getChildren().add(this.addVBox());
 
-        new SnakeHead(this, 500, 500);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
@@ -83,6 +82,8 @@ public class Game extends Pane {
         Globals.oldGameObjects.clear();
         Globals.gameObjects.clear();
         GameOver.highScore =0;
+        SnakeHead.setSpeed(2);
+
 
         getChildren().clear();
         init();

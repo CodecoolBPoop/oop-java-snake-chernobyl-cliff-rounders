@@ -82,7 +82,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         health += diff;
     }
 
-    public void setSpeed(float speed) {
+    public static void setSpeed(float speed) {
         SnakeHead.speed = speed;
     }
 }
