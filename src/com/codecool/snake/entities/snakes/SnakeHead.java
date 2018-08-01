@@ -15,7 +15,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
-    private int health;
+    public static int health;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
