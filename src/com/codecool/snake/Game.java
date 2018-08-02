@@ -32,12 +32,12 @@ public class Game extends Pane {
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
+
         new Batman(this);
         new Batman(this);
         new Batman(this);
         new Batman(this);
-        new Follower(this);
-        new Follower(this);
+
         new Follower(this);
         new Follower(this);
 
