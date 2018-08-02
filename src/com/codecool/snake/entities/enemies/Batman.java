@@ -6,13 +6,15 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.InteractableLaser;
+import com.codecool.snake.entities.snakes.LaserShooter;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class Batman extends GameEntity implements Animatable, Interactable {
+public class Batman extends GameEntity implements Animatable, Interactable, InteractableLaser {
 
     private Point2D heading;
     private static final int damage = 10;
@@ -57,6 +59,11 @@ public class Batman extends GameEntity implements Animatable, Interactable {
     @Override
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
+        destroy();
+    }
+
+    @Override
+    public void apply(LaserShooter laserShooter) {
         destroy();
     }
 

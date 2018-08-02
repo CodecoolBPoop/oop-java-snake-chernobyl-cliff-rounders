@@ -60,12 +60,14 @@ public class Game extends Pane {
 
     }
 
+
     public void start() {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:  Globals.leftKeyDown  = true; break;
                 case RIGHT: Globals.rightKeyDown  = true; break;
+                case SHIFT: Globals.shiftKeyDown = true; break;
             }
         });
 
@@ -73,6 +75,7 @@ public class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.leftKeyDown  = false; break;
                 case RIGHT: Globals.rightKeyDown  = false; break;
+                case SHIFT: Globals.shiftKeyDown = false; break;
             }
         });
         Globals.gameLoop = new GameLoop();
@@ -90,7 +93,7 @@ public class Game extends Pane {
         SnakeHead.setSpeed(2);
         Globals.leftKeyDown= false;
         Globals.rightKeyDown= false;
-
+        Globals.shiftKeyDown = false;
 
         getChildren().clear();
         init();
@@ -121,8 +124,12 @@ public class Game extends Pane {
         new SimpleEnemy(pane);
     }
 
+
+
+
     public static void addBatman(Pane pane) {
         new Batman(pane);
     }
+
 }
 
