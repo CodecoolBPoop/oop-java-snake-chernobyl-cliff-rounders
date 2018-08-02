@@ -75,6 +75,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         for (int i = 0; i < numParts; i++) {
             SnakeBody newPart = new SnakeBody(pane, tail);
             tail = newPart;
+
         }
             GameOver.highScore+=numParts;
     }

@@ -23,7 +23,7 @@ public class DifferentPowerup2 extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.addPart(5);
+        snakeHead.addPart(4);
         destroy();
     }
 
