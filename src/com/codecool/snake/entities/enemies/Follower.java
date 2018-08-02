@@ -1,6 +1,5 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -14,21 +13,19 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-// a simple enemy TODO make better ones.
-public class SimpleEnemy extends GameEntity implements Animatable, Interactable, InteractableLaser {
+public class Follower extends GameEntity implements Animatable, Interactable, InteractableLaser {
 
     private Point2D heading;
-    private static final int damage = 10;
-    public Pane myGame;
+    private static final int damage = 30;
 
-    public SimpleEnemy(Pane pane) {
+    public Follower(Pane pane) {
         super(pane);
-        myGame = pane;
 
-        setImage(Globals.drunkMan);
+        setImage(Globals.drone);
         pane.getChildren().add(this);
-        int speed = 1;
+        double speed = 1d;
         Random rnd = new Random();
+        // Starting position
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
@@ -41,10 +38,24 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable,
     public void step() {
         if (isOutOfBounds()) {
             destroy();
-            Game.addSimpleEnemy(myGame);
         }
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+        double speed = 1.5d;
+        double snakeDirection = SnakeHead.getSnakeHeadPosition();
+        setRotate(snakeDirection);
+
+        double newDir =
+                Math.toDegrees(Math.atan2(
+                        Globals.snakeHeadObj.getY() - this.getY(),
+                        Globals.snakeHeadObj.getX() - this.getX()
+                        ));
+
+        heading = Utils.directionToVector(newDir, speed);
+
+        Point2D point = new Point2D(Globals.snakeHeadObj.getX() - this.getX(), Globals.snakeHeadObj.getY() - this.getY()).normalize().multiply(speed);
+
+
+        setX(getX() + point.getX());
+        setY(getY() + point.getY());
     }
 
     @Override
@@ -60,11 +71,6 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable,
 
     @Override
     public String getMessage() {
-        return "10 damage";
-    }
-
-
-    public Pane getMyGame() {
-        return myGame;
+        return "30 damage";
     }
 }
