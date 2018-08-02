@@ -77,7 +77,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             tail = newPart;
 
         }
-            GameOver.highScore+=numParts;
+            GameOver.highScore+=numParts*10;
     }
 
 
