@@ -23,6 +23,7 @@ public class DifferentPowerup1 extends GameEntity implements Interactable {
     @Override
     public void apply(SnakeHead snakeHead) {
         snakeHead.setSpeed(3);
+        snakeHead.setSpeedTimer(360);
         destroy();
 
     }
@@ -31,4 +32,6 @@ public class DifferentPowerup1 extends GameEntity implements Interactable {
     public String getMessage() {
         return "Got power-up :)";
     }
+
+
 }
