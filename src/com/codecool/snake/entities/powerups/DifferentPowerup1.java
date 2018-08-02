@@ -12,7 +12,7 @@ public class DifferentPowerup1 extends GameEntity implements Interactable {
 
     public DifferentPowerup1(Pane pane) {
         super(pane);
-        setImage(Globals.eyes);
+        setImage(Globals.beer);
         pane.getChildren().add(this);
 
         Random rnd = new Random();

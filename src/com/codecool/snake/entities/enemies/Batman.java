@@ -22,7 +22,7 @@ public class Batman extends GameEntity implements Animatable, Interactable {
         super(pane);
         myGame = pane;
 
-        setImage(Globals.batmanEnemy);
+        setImage(Globals.securityMan);
         pane.getChildren().add(this);
         double speed = 0.5d;
         Random rnd = new Random();

@@ -24,9 +24,11 @@ public class Game extends Pane {
     }
 
     private void init() {
+        new BackGround(this);
         Globals.snakeHeadObj = new SnakeHead(this, 500, 500);
         this.getChildren().add(this.addVBox());
 
+
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
@@ -55,6 +57,7 @@ public class Game extends Pane {
         new DifferentPowerup2(this);
         new DifferentPowerup2(this);
         new DifferentPowerup2(this);
+
     }
 
     public void start() {
