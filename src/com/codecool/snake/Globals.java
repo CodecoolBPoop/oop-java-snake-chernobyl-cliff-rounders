@@ -16,13 +16,17 @@ public class Globals {
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
-    public static Image simpleEnemy = new Image("simple_enemy.png");
-    public static Image powerupBerry = new Image("powerup_berry.png");
-    public static Image batmanEnemy = new Image("batman.png");
-    public static Image angryEmoji = new Image("angry_emoji.png");
-    public static Image eyes = new Image("eyes.png");
-    public static Image mastercard = new Image ("mastercard.png");
+
     public static Image laser = new Image("laser.png");
+
+    public static Image drunkMan = new Image("rsz_14871-200.png");
+    public static Image dollar = new Image("rsz_dollar-png-image-57289.png");
+    public static Image securityMan = new Image("rsz_security-prevention-002-512.png");
+    public static Image drone = new Image("rsz_103844-200.png");
+    public static Image beer = new Image("rsz_beermug.png");
+    public static Image wristband = new Image ("rsz_blank-wristband.png");
+    public static Image backGround = new Image ("Landscape-PNG-File.png");
+
     //.. put here the other images you want to use
 
     public static boolean leftKeyDown;

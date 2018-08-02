@@ -10,6 +10,7 @@ import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
+
 public class SnakeHead extends GameEntity implements Animatable {
 
     private static float speed = 2;
@@ -17,6 +18,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private static double snakeHeadPosition;
     public static int health;
+    private int speedTimer;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -24,6 +26,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(yc);
         health = 100;
         tail = this;
+        this.speedTimer = 0;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
 
@@ -88,9 +91,11 @@ public class SnakeHead extends GameEntity implements Animatable {
         for (int i = 0; i < numParts; i++) {
             SnakeBody newPart = new SnakeBody(pane, tail);
             tail = newPart;
+
         }
-            GameOver.highScore+=numParts;
+            GameOver.highScore+=numParts*10;
     }
+
 
     public void changeHealth(int diff) {
         health += diff;
@@ -98,5 +103,24 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public static void setSpeed(float speed) {
         SnakeHead.speed = speed;
+    }
+
+    public int getSpeedTimer() {
+        return speedTimer;
+    }
+
+    public void setSpeedTimer(int speedTimer) {
+        this.speedTimer = speedTimer;
+    }
+
+    public void setSpeedTimer() {
+        this.speedTimer -= 1;
+    }
+
+    public static String getHealth() {
+        return Integer.toString(health);
+
+
+
     }
 }

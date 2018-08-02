@@ -12,7 +12,7 @@ public class DifferentPowerup1 extends GameEntity implements Interactable {
 
     public DifferentPowerup1(Pane pane) {
         super(pane);
-        setImage(Globals.eyes);
+        setImage(Globals.beer);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -22,8 +22,8 @@ public class DifferentPowerup1 extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.addPart(10);
         snakeHead.setSpeed(3);
+        snakeHead.setSpeedTimer(360);
         destroy();
 
     }
@@ -32,4 +32,6 @@ public class DifferentPowerup1 extends GameEntity implements Interactable {
     public String getMessage() {
         return "Got power-up :)";
     }
+
+
 }

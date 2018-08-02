@@ -13,31 +13,33 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 
 public class Game extends Pane {
 
-    public Game() {
+    static Label label = new Label();
 
+    public Game() {
         init();
     }
 
     private void init() {
+        new BackGround(this);
         Globals.snakeHeadObj = new SnakeHead(this, 500, 500);
         this.getChildren().add(this.addVBox());
+
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
+
         new Batman(this);
         new Batman(this);
         new Batman(this);
         new Batman(this);
-        new Follower(this);
-        new Follower(this);
+
         new Follower(this);
         new Follower(this);
 
@@ -104,11 +106,7 @@ public class Game extends Pane {
         vbox.setLayoutX(10);
         vbox.setLayoutY(20);
 
-        Stage healthBar = new Stage();
-        healthBar.setTitle("Healthbar");
-
-        Label label = new Label();
-        label.setText(Integer.toString(SnakeHead.health));
+        label.setText(SnakeHead.getHealth());
 
         Button restartb = new Button("Restart");
         restartb.setPrefSize(100,20);
@@ -118,11 +116,20 @@ public class Game extends Pane {
             restart();
         });
 
-
         vbox.getChildren().addAll(label,restartb);
         return vbox;
     }
 
+    public static void addSimpleEnemy(Pane pane) {
+        new SimpleEnemy(pane);
+    }
 
+
+
+
+    public static void addBatman(Pane pane) {
+        new Batman(pane);
+    }
 
 }
+

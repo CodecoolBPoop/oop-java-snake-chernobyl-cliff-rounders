@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.enemies;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -17,11 +18,13 @@ public class Batman extends GameEntity implements Animatable, Interactable, Inte
 
     private Point2D heading;
     private static final int damage = 10;
+    public Pane myGame;
 
     public Batman(Pane pane) {
         super(pane);
+        myGame = pane;
 
-        setImage(Globals.batmanEnemy);
+        setImage(Globals.securityMan);
         pane.getChildren().add(this);
         double speed = 0.5d;
         Random rnd = new Random();
@@ -40,6 +43,8 @@ public class Batman extends GameEntity implements Animatable, Interactable, Inte
         double maxTurnOfCircles = 5 * oneCircle;
         if (isOutOfBounds() || this.getRotate() > maxTurnOfCircles) {
             destroy();
+            Game.addBatman(myGame);
+
         }
         double speed = 1d;
         double direction = getRotate();

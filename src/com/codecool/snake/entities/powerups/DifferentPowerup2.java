@@ -12,7 +12,7 @@ public class DifferentPowerup2 extends GameEntity implements Interactable {
 
     public DifferentPowerup2(Pane pane) {
         super(pane);
-        setImage(Globals.mastercard);
+        setImage(Globals.wristband);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -23,7 +23,7 @@ public class DifferentPowerup2 extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.addPart(5);
+        snakeHead.addPart(4);
         destroy();
     }
 

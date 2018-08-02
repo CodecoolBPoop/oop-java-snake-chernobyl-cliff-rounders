@@ -21,7 +21,7 @@ public class Follower extends GameEntity implements Animatable, Interactable, In
     public Follower(Pane pane) {
         super(pane);
 
-        setImage(Globals.angryEmoji);
+        setImage(Globals.drone);
         pane.getChildren().add(this);
         double speed = 1d;
         Random rnd = new Random();
@@ -39,7 +39,7 @@ public class Follower extends GameEntity implements Animatable, Interactable, In
         if (isOutOfBounds()) {
             destroy();
         }
-        double speed = 2d;
+        double speed = 1.5d;
         double snakeDirection = SnakeHead.getSnakeHeadPosition();
         setRotate(snakeDirection);
 
