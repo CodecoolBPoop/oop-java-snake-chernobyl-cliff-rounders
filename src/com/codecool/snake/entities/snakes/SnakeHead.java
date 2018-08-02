@@ -35,24 +35,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void step() {
-        double dir = getRotate();
-        if (Globals.leftKeyDown) {
-            dir = dir - turnRate;
-            this.snakeHeadPosition = getRotate();
+        Point2D heading = getSnakeHeading();
 
-        }
-        if (Globals.rightKeyDown) {
-            dir = dir + turnRate;
-            this.snakeHeadPosition = getRotate();
-        }
+        createShotIfNeeded();
 
-        if (Globals.shiftKeyDown) {
-            new LaserShooter(pane);
-        }
-
-        // set rotation and position
-        setRotate(dir);
-        Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
@@ -73,6 +59,29 @@ public class SnakeHead extends GameEntity implements Animatable {
             Globals.gameLoop.stop();
             new GameOver().gameOver((Game) this.pane);
         }
+    }
+
+    public void createShotIfNeeded() {
+        if (Globals.shiftKeyDown) {
+            new LaserShooter(pane);
+        }
+    }
+
+    public Point2D getSnakeHeading() {
+        double dir = getRotate();
+        if (Globals.leftKeyDown) {
+            dir = dir - turnRate;
+            this.snakeHeadPosition = getRotate();
+
+        }
+        if (Globals.rightKeyDown) {
+            dir = dir + turnRate;
+            this.snakeHeadPosition = getRotate();
+        }
+
+        // set rotation and position
+        setRotate(dir);
+        return Utils.directionToVector(dir, speed);
     }
 
     public void addPart(int numParts) {

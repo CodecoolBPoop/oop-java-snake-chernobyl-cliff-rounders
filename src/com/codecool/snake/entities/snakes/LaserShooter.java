@@ -1,15 +1,16 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.Globals;
-import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.InteractableLaser;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
 public class LaserShooter extends GameEntity implements Animatable {
 
     private static final float speed = 6;
+    private Point2D heading;
 
     public LaserShooter(Pane pane) {
         super(pane);
@@ -17,6 +18,7 @@ public class LaserShooter extends GameEntity implements Animatable {
         setY(Globals.snakeHeadObj.getY());
         setImage(Globals.laser);
         pane.getChildren().add(this);
+        this.heading = Globals.snakeHeadObj.getSnakeHeading();
 
     }
 
@@ -26,16 +28,23 @@ public class LaserShooter extends GameEntity implements Animatable {
             destroy();
         }
 
-        setRotate(getSnakePosition());
-        Point2D heading = Utils.directionToVector(getRotate(), speed);
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+        setX(getX() + heading.getX() * speed);
+        setY(getY() + heading.getY() * speed);
+
+        checkIfCollided();
 
     }
 
-    public double getSnakePosition() {
-        double snakePosition = SnakeHead.getSnakeHeadPosition();
-        return snakePosition;
+    public void checkIfCollided() {
+        for (GameEntity entity : Globals.getGameObjects()) {
+            if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
+                if (entity instanceof InteractableLaser) {
+                    InteractableLaser interactableLaser = (InteractableLaser) entity;
+                    interactableLaser.apply(this);
+                    System.out.println(interactableLaser.getMessage());
+                }
+            }
+        }
     }
 
 }
