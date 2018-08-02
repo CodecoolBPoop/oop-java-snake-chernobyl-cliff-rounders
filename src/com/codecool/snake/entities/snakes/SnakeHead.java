@@ -18,6 +18,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private static double snakeHeadPosition;
     public static int health;
+    private int speedTimer;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -25,6 +26,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(yc);
         health = 100;
         tail = this;
+        this.speedTimer = 0;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
 
@@ -88,8 +90,22 @@ public class SnakeHead extends GameEntity implements Animatable {
         SnakeHead.speed = speed;
     }
 
+    public int getSpeedTimer() {
+        return speedTimer;
+    }
+
+    public void setSpeedTimer(int speedTimer) {
+        this.speedTimer = speedTimer;
+    }
+
+    public void setSpeedTimer() {
+        this.speedTimer -= 1;
+    }
+
     public static String getHealth() {
         return Integer.toString(health);
+
+
 
     }
 }
